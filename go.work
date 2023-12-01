@@ -1,0 +1,6 @@
+go 1.21.1
+
+use (
+	./trebuchets/part-1
+	./trebuchets/part-2
+)
