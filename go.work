@@ -1,6 +1,8 @@
 go 1.21.1
 
+use "./1 - trebuchets/part-1"
+
 use (
-	./trebuchets/part-1
-	./trebuchets/part-2
+	"./1 - trebuchets/part-2"
+	"./2 - cube/part-1"
 )

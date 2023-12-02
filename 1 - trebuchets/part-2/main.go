@@ -30,23 +30,26 @@ func main() {
 
 	calibrations := strings.Split(strings.ReplaceAll(string(content), "\r\n", "\n"), "\n")
 
+	total := CalculateCalibrations(calibrations)
+
+	fmt.Println(total)
+}
+
+func CalculateCalibrations(calibrationData []string) int {
 	total := 0
 
-	for _, calibration := range calibrations {
+	for _, calibration := range calibrationData {
 
 		firstCalibration := getFirstNumerical(calibration)
 
 		secondCalibration := getFinalNumerical(calibration)
 
-		fmt.Println(calibration)
-
 		result, _ := strconv.Atoi(firstCalibration + secondCalibration)
 
 		total += result
-		fmt.Println(result)
 	}
 
-	fmt.Println(total)
+	return total
 }
 
 func getFirstNumerical(calibration string) string {
@@ -69,7 +72,7 @@ func getFinalNumerical(calibration string) string {
 
 	re := regexp.MustCompile(validFinalCalibrationRegex)
 
-	matches := re.FindAllStringIndex(calibration, -1)
+	matches := re.FindAllStringSubmatchIndex(calibration, -1)
 
 	finalMatchIndex := matches[len(matches)-1]
 	result := calibration[finalMatchIndex[0]:finalMatchIndex[1]]
